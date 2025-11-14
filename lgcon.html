@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style-register.css" />
+  </head>
+
+  <body>
+    <div class="page-container">
+      <h1>Register a new account</h1>
+      <form id="register-form">
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" required />
+
+        <label for="new-password">Password:</label>
+        <input type="password" id="new-password" required />
+
+        <button type="submit">Register</button>
+      </form>
+
+      <script>
+        // وقتی کاربر فرم را ارسال می‌کند
+        document.getElementById("register-form").addEventListener("submit", function(e) {
+          e.preventDefault();
+
+          const newUsername = document.getElementById("new-username").value;
+          const newPassword = document.getElementById("new-password").value;
+
+          // ذخیره‌سازی اطلاعات کاربر در localStorage یا هر پایگاه داده دیگر
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('username', newUsername);
+
+          window.location.href = "login.html"; // هدایت به صفحه ورود پس از ثبت‌نام
+        });
+      </script>
+    </div>
+  </body>
+</html>

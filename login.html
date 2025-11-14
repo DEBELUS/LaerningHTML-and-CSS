@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #a126de, #9e5dbf , #b181c9);
+      font-family: "Poppins", sans-serif;
+      overflow: hidden; 
+    }
+
+    .circle { position: absolute; background-color: rgba(0,0,0,0.1); border-radius:50%; animation: circle-animation 5s infinite; }
+    .circle1{width:200px;height:200px;top:10%;left:20%;}
+    .circle2{width:150px;height:150px;top:40%;left:60%;}
+    .circle3{width:100px;height:100px;top:70%;left:30%;}
+    @keyframes circle-animation{0%{transform:translate(0,0);}50%{transform:translate(50px,-50px);}100%{transform:translate(0,0);} }
+
+    .form-container {
+      position: relative;
+      background:white;
+      border-radius:15px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      width:400px;
+      padding:40px 35px;
+      text-align:center;
+      z-index:2;
+    }
+    .form-container h1{margin-top:0;font-size:26px;color:#333;margin-bottom:20px;}
+    .form-container input[type="text"], 
+    .form-container input[type="email"], 
+    .form-container input[type="password"]{
+      width:100%;padding:10px;margin-bottom:15px;border-radius:10px;
+      border:1px solid #ccc;outline:none;font-size:15px;transition:0.3s;
+    }
+    .form-container input:focus{border-color:#4a90e2;box-shadow:0 0 5px rgba(74,144,226,0.3);}
+    .form-container button{
+      width:45%;padding:10px;border:none;border-radius:10px;font-weight:bold;
+      font-size:16px;cursor:pointer;transition:0.3s;
+    }
+    .reset-btn{background:#ccc;color:#333;}
+    .reset-btn:hover{background:#bbb;}
+    .submit-btn{background:#4a90e2;color:white;}
+    .submit-btn:hover{background:#357abd;}
+
+    .switch-form {margin-top:10px;font-size:14px;}
+    .switch-form a {color:#4a90e2;text-decoration:none;font-weight:bold;}
+  </style>
+</head>
+<body>
+  <!-- دایره‌های انیمیشن -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+
+  <!-- فرم ورود -->
+  <div class="form-container">
+    <h1>Login</h1>
+    <form id="loginForm" autocomplete="off">
+      <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+      <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
+      <br>
+      <div style="display:flex;justify-content:space-between;">
+        <button type="reset" class="reset-btn"> Reset</button>
+        <button type="submit" class="submit-btn"> Submit</button>
+      </div>
+    </form>
+    <div class="switch-form">
+      Don't have an account? <a href="register.html">Register</a>
+    </div>
+  </div>
+
+  <!-- صفحه لودینگ -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      const inputs = document.querySelectorAll('#loginForm input');
+      inputs.forEach(input => input.value = '');
+      inputs.forEach(input => input.addEventListener('focus', () => input.value=''));
+    }
+
+    // تابع ثبت‌نام
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+      
+      // نمایش صفحه لودینگ
+      document.getElementById('loading').style.display = 'flex';
+
+      // شبیه‌سازی ورود
+      setTimeout(() => {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (!user) {
+          alert("ایمیل یا رمز عبور اشتباه است!");
+        } else {
+          localStorage.setItem("loggedInUser", user.username);
+          alert("با موفقیت وارد شدید ✅");
+          window.location.href = "home.html";
+        }
+
+        // مخفی کردن صفحه لودینگ بعد از ورود
+        document.getElementById('loading').style.display = 'none';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

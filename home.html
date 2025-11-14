@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="style-index3.css" />
+
+    <style>
+      /* پیام‌های ارور و موفقیت */
+      .alert {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 2000;
+      }
+      .error {
+        background-color: #ff4d4d;
+        color: white;
+      }
+      .success {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      /* نمایش نام کاربر */
+      .user-info {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        color: white;
+        font-weight: bold;
+      }
+
+      /* دکمه Logout */
+      #logout-btn {
+        position: absolute;
+        top: 45px;
+        right: 40px;
+        padding: 6px 14px;
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        display: none;
+      }
+
+      #logout-btn:hover {
+        background-color: white;
+        color: darkorchid;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-container">
+      <header id="main-header">
+        <!-- دکمه‌های ورود و ثبت‌نام -->
+        <div class="auth-buttons">
+          <a href="login.html" class="btn-login">Login</a>
+          <a href="register.html" class="btn-register">Register</a>
+        </div>
+
+        <!-- نمایش نام یوزر -->
+        <div class="user-info" id="user-info"></div>
+
+        <!-- دکمه logout -->
+        <button id="logout-btn">Logout</button>
+
+        <h1 id="header-title">Welcome to HTML Learning</h1>
+
+        <nav>
+          <a href="home.html">Home</a>
+          <a href="about.html">About us</a>
+        </nav>
+        <hr />
+      </header>
+
+      <main>
+        <div class="content-box">
+          <h1 id="abouth1">درباره ی سایت</h1>
+          <p id="ph1">
+            در این سایت شما اطلاعاتی از زبان های برنامه نویسی معروف و سایت سازی
+            کسب می‌کنید
+          </p>
+          <hr id="content-hr" />
+          <br />
+
+          <h1 class="sait">درباره ی سایت سازی</h1>
+          <div class="sait">HTML , CSS , JavaScript</div>
+          <div class="sait">
+            این چند مورد بخش بسیار مهم از سایت سازی هستند که باید آن‌ها را بلد
+            باشید
+          </div>
+
+          <br /><br />
+
+          <div class="sait">HTML:</div>
+          <div class="sait">
+            ساختار صفحات وب را می‌آموزید و یاد می‌گیرید چگونه متن، تصویر، لینک و
+            عناصر مختلف را در صفحه قرار دهید
+          </div>
+
+          <br />
+
+          <div class="sait">CSS:</div>
+          <div class="sait">
+            ظاهر صفحات خود را زیبا و جذاب می‌کنید؛ رنگ‌ها، فونت‌ها، فاصله‌ها و
+            طرح‌بندی‌ها را به دلخواه خود تغییر می‌دهید
+          </div>
+
+          <br />
+
+          <div class="sait">JavaScript:</div>
+          <div class="sait">
+            صفحات خود را پویا و تعاملی می‌کنید و به کاربران امکان می‌دهید با
+            سایت شما تعامل داشته باشند تا تجربه‌ای زنده و جذاب داشته باشند
+          </div>
+
+          <hr id="learn-hr" />
+
+          <h1 id="amozesh">آموزش‌ها</h1>
+          <div class="buttons-container">
+            <a href="ht.html">
+              <button class="styled-btn html-btn">
+                <img src="html.jpg" alt="HTML" />
+              </button>
+            </a>
+
+            <a href="CSS3.html">
+              <button class="styled-btn css-btn">
+                <img src="css2.jpg" alt="CSS" />
+              </button>
+            </a>
+
+            <a href="js.html">
+              <button class="styled-btn js-btn">
+                <img src="js.png" alt="JavaScript" />
+              </button>
+            </a>
+          </div>
+
+          <p style="height: 70px"></p>
+        </div>
+      </main>
+
+      <footer>
+        <h5>Author: DEBELUS</h5>
+        &copy; copyright reserved
+      </footer>
+    </div>
+
+    <script>
+      /* انیمیشن اسکرول هدر */
+      const header = document.getElementById("main-header");
+      const title = document.getElementById("header-title");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+          title.classList.add("hidden");
+        } else {
+          header.classList.remove("scrolled");
+          title.classList.remove("hidden");
+        }
+      });
+
+      /* نمایش پیام */
+      function showAlert(message, type = "error") {
+        const alertBox = document.createElement("div");
+        alertBox.className = `alert ${type}`;
+        alertBox.innerText = message;
+        document.body.appendChild(alertBox);
+
+        setTimeout(() => alertBox.remove(), 3000);
+      }
+
+      /* وضعیت لاگین */
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      const userInfo = document.getElementById("user-info");
+      const logoutBtn = document.getElementById("logout-btn");
+      const buttons = document.querySelectorAll(".buttons-container a button");
+
+      if (loggedInUser) {
+          userInfo.innerText = `👋 خوش آمدی، ${loggedInUser}`;
+          userInfo.style.display = "block";
+          logoutBtn.style.display = "inline-block";
+      }
+
+       else {
+        userInfo.innerText = "";
+        logoutBtn.style.display = "none";
+
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            showAlert("⚠️ لطفاً ابتدا وارد حساب کاربری شوید!", "error");
+          });
+        });
+      }
+
+      /* عملکرد دکمه Logout */
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser");
+        showAlert("✔️ با موفقیت خارج شدید", "success");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200);
+      });
+    </script>
+  </body>
+</html>

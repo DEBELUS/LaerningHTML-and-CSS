@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>آموزش جامع HTML</title>
+    <style>
+      /* استایل برای body */
+      body {
+        font-family: "Vazirmatn", sans-serif;
+        line-height: 1.8;
+        background: linear-gradient(to right, #de7026, #c98b81);
+        color: #222;
+        padding: 30px;
+        margin: 0;
+      }
+
+      /* استایل برای عنوان اصلی */
+      h1 {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px 30px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      /* استایل برای تگ‌های h2, h3 */
+      h2,
+      h3 {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px 15px;
+        border-radius: 5px;
+      }
+
+      /* استایل برای کدهای inline */
+      code {
+        background: #222;
+        color: #00ff9d;
+        padding: 5px 8px;
+        border-radius: 5px;
+        font-family: "Courier New", monospace;
+      }
+
+      /* استایل برای بلوک‌های کد */
+      pre {
+        background: #1a1a1a;
+        color: #00ff9d;
+        padding: 15px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+      }
+
+      /* استایل برای بخش‌های مختلف */
+      section {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* استایل برای لیست‌ها */
+      ul,
+      ol {
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      /* استایل برای لیست‌های مرتب و نامرتب */
+      ul li,
+      ol li {
+        margin-bottom: 10px;
+      }
+
+      /* استایل برای پاراگراف‌ها */
+      p {
+        font-size: 1.1em;
+      }
+
+      /* استایل برای لینک‌ها */
+      a {
+        color: #1e90ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* استایل برای دکمه‌ها */
+      button {
+        background: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background: #45a049;
+      }
+
+      /* استایل برای footer */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #333;
+        color: white;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>آموزش جامع HTML</h1>
+
+    <section>
+      <h2>1️⃣ HTML چیست؟</h2>
+      <p>
+        HTML (مخفف <b>HyperText Markup Language</b>) زبان نشانه‌گذاری برای
+        ساختاردهی محتوای صفحات وب است. با استفاده از تگ‌ها (Tags) می‌توانیم متن،
+        تصویر، لینک، فرم و... را در صفحه قرار دهیم.
+      </p>
+    </section>
+
+    <section>
+      <h2>2️⃣ ساختار اصلی یک سند HTML</h2>
+      <p>هر صفحه HTML از ۳ بخش اصلی تشکیل می‌شود:</p>
+      <ul>
+        <li><code>&lt;head&gt;</code> — شامل اطلاعات متا و عنوان صفحه</li>
+        <li><code>&lt;body&gt;</code> — محتوای قابل نمایش برای کاربر</li>
+        <li><code>&lt;html&gt;</code> — تگ اصلی که کل صفحه را در بر می‌گیرد</li>
+      </ul>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fa"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;عنوان صفحه&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;سلام دنیا!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>3️⃣ تگ‌های متنی پایه</h2>
+      <p>برای نمایش متن‌ها از تگ‌های مختلف استفاده می‌شود:</p>
+      <pre><code>&lt;h1&gt;عنوان اصلی&lt;/h1&gt;
+&lt;h2&gt;زیرعنوان&lt;/h2&gt;
+&lt;p&gt;این یک پاراگراف است.&lt;/p&gt;
+&lt;b&gt;متن بولد&lt;/b&gt;
+&lt;i&gt;متن مورب&lt;/i&gt;
+&lt;u&gt;متن زیرخط‌دار&lt;/u&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>4️⃣ لینک‌ها و تصاویر</h2>
+      <p>
+        برای اضافه کردن لینک و تصویر از تگ‌های <code>&lt;a&gt;</code> و
+        <code>&lt;img&gt;</code> استفاده می‌شود.
+      </p>
+      <pre><code>&lt;a href="https://example.com"&gt;برو به سایت&lt;/a&gt;
+
+&lt;img src="example.jpg" alt="توضیح تصویر" width="200"&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>5️⃣ لیست‌ها</h2>
+      <p>لیست‌ها به دو نوع مرتب و نامرتب تقسیم می‌شوند:</p>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;مورد اول&lt;/li&gt;
+  &lt;li&gt;مورد دوم&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;اول&lt;/li&gt;
+  &lt;li&gt;دوم&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>6️⃣ جدول‌ها</h2>
+      <pre><code>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;نام&lt;/th&gt;
+    &lt;th&gt;سن&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;کاربر&lt;/td&gt;
+    &lt;td&gt;16&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>7️⃣ فرم‌ها (Forms)</h2>
+      <pre><code>&lt;form action="/submit" method="post"&gt;
+  &lt;label&gt;نام کاربری:&lt;/label&gt;
+  &lt;input type="text" name="username" required&gt;&lt;br&gt;
+
+  &lt;label&gt;رمز عبور:&lt;/label&gt;
+  &lt;input type="password" name="password" required&gt;&lt;br&gt;
+
+  &lt;input type="submit" value="ارسال"&gt;
+&lt;/form&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>8️⃣ عناصر معنایی (Semantic Elements)</h2>
+      <p>تگ‌های معنایی برای مشخص کردن بخش‌های صفحه به کار می‌روند:</p>
+      <pre><code>&lt;header&gt;سربرگ سایت&lt;/header&gt;
+&lt;nav&gt;منوی ناوبری&lt;/nav&gt;
+&lt;main&gt;محتوای اصلی&lt;/main&gt;
+&lt;section&gt;بخش مقاله&lt;/section&gt;
+&lt;article&gt;یک مطلب&lt;/article&gt;
+&lt;footer&gt;پاورقی&lt;/footer&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>9️⃣ افزودن CSS و JavaScript</h2>
+      <p>می‌توان CSS و JS را داخل یا خارج از فایل اضافه کرد:</p>
+      <pre><code>&lt;!-- روش داخلی --&gt;
+&lt;style&gt;
+  body { background-color: lightblue; }
+&lt;/style&gt;
+
+&lt;!-- روش خارجی --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- اسکریپت جاوااسکریپت --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <h2>🔟 جمع‌بندی</h2>
+      <p>
+        HTML پایه و اساس طراحی وب است. با یادگیری تگ‌ها، ویژگی‌ها و ساختار صفحه،
+        می‌تونی به راحتی صفحات حرفه‌ای بسازی و بعدش با CSS و JS زیباترشون کنی 💪
+      </p>
+    </section>
+  </body>
+</html>

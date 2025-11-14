@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #a126de, #9e5dbf , #b181c9);
+      font-family: "Poppins", sans-serif;
+      overflow: hidden; 
+    }
+
+    .circle { position: absolute; background-color: rgba(0,0,0,0.1); border-radius:50%; animation: circle-animation 5s infinite; }
+    .circle1{width:200px;height:200px;top:10%;left:20%;}
+    .circle2{width:150px;height:150px;top:40%;left:60%;}
+    .circle3{width:100px;height:100px;top:70%;left:30%;}
+    @keyframes circle-animation{0%{transform:translate(0,0);}50%{transform:translate(50px,-50px);}100%{transform:translate(0,0);} }
+
+    .form-container {
+      position: relative;
+      background:white;
+      border-radius:15px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      width:400px;
+      padding:40px 35px;
+      text-align:center;
+      z-index:2;
+    }
+    .form-container h1{margin-top:0;font-size:26px;color:#333;margin-bottom:20px;}
+    .form-container input[type="text"], 
+    .form-container input[type="email"], 
+    .form-container input[type="password"]{
+      width:100%;padding:10px;margin-bottom:15px;border-radius:10px;
+      border:1px solid #ccc;outline:none;font-size:15px;transition:0.3s;
+    }
+    .form-container input:focus{border-color:#4a90e2;box-shadow:0 0 5px rgba(74,144,226,0.3);}
+    .form-container button{
+      width:45%;padding:10px;border:none;border-radius:10px;font-weight:bold;
+      font-size:16px;cursor:pointer;transition:0.3s;
+    }
+    .reset-btn{background:#ccc;color:#333;}
+    .reset-btn:hover{background:#bbb;}
+    .submit-btn{background:#4a90e2;color:white;}
+    .submit-btn:hover{background:#357abd;}
+
+    .switch-form {margin-top:10px;font-size:14px;}
+    .switch-form a {color:#4a90e2;text-decoration:none;font-weight:bold;}
+  </style>
+</head>
+<body>
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+
+  <div class="form-container">
+    <h1>Register</h1>
+    <form id="registerForm" autocomplete="off">
+      <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+      <input type="email" name="email" placeholder="Email" autocomplete="off" required>
+      <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" required>
+      <br>
+      <div style="display:flex;justify-content:space-between;">
+        <button type="reset" class="reset-btn"> Reset</button>
+        <button type="submit" class="submit-btn"> Submit</button>
+      </div>
+    </form>
+    <div class="switch-form">
+      Have an account? <a href="login.html">Login</a>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      const inputs = document.querySelectorAll('#registerForm input');
+      inputs.forEach(i => i.value = '');
+    };
+
+    const form = document.getElementById("registerForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const username = form.username.value.trim();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
+
+      if (password !== confirmPassword) {
+        alert("❌ پسورد و تکرار آن باید یکسان باشند!");
+        return;
+      }
+
+      // ذخیره کاربر در localStorage
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      if (users.find(u => u.email === email)) {
+        alert("⚠️ این ایمیل قبلاً ثبت شده است!");
+        return;
+      }
+
+      users.push({ username, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      // انیمیشن و صفحه لودینگ
+      const loader = document.createElement("div");
+      loader.innerHTML = "<h2 style='color:white; text-align:center; margin-top:40vh;'>Loding . . .</h2>";
+      loader.style.position = "fixed";
+      loader.style.top = 0;
+      loader.style.left = 0;
+      loader.style.width = "100%";
+      loader.style.height = "100%";
+      loader.style.background = "linear-gradient(to bottom, #a126de, #9e5dbf , #b181c9)";
+      loader.style.zIndex = 1000;
+      document.body.appendChild(loader);
+
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>
